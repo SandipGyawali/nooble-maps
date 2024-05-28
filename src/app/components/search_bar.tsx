@@ -6,10 +6,14 @@ import { MdSearch } from "react-icons/md";
 interface SearchBarProps {
   input: string;
   setInput: Dispatch<SetStateAction<string>>;
+  handleSearchInput: () => void;
 }
 
-function SearchBar({ input, setInput }: SearchBarProps): JSX.Element {
-  function handleClick() {}
+function SearchBar({
+  input,
+  setInput,
+  handleSearchInput,
+}: SearchBarProps): JSX.Element {
   return (
     <div
       className="search-box-wrapper flex justify-between items-center 
@@ -31,7 +35,7 @@ function SearchBar({ input, setInput }: SearchBarProps): JSX.Element {
         as={MdSearch}
         fontSize={22}
         className="mr-3 cursor-pointer"
-        onClick={handleClick}
+        onClick={handleSearchInput}
         color={"gray"}
       />
     </div>
