@@ -9,16 +9,23 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@chakra-ui/react": "^2.8.2",
+    "@emotion/react": "^11.11.4",
+    "@emotion/styled": "^11.11.5",
+    "@react-leaflet/core": "^2.1.0",
     "appwrite": "^14.0.1",
     "axios": "^1.7.2",
     "dotenv": "^16.4.5",
-    "google-map-react": "^2.2.1",
+    "framer-motion": "^11.2.6",
+    "leaflet": "^1.9.4",
     "next": "14.2.3",
     "react": "^18",
     "react-dom": "^18",
-    "react-icons": "^5.2.1"
+    "react-icons": "^5.2.1",
+    "react-leaflet": "^4.2.1"
   },
   "devDependencies": {
+    "@types/leaflet": "^1.9.12",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",

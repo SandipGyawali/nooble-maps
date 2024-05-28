@@ -1,9 +1,16 @@
+"use client";
+import dynamic from "next/dynamic";
+import { Box, Flex } from "@chakra-ui/react";
+import SideBar from "./components/sidebar";
+const Map = dynamic(() => import("./components/map_view"), { ssr: false });
+
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div>
-        <h1>Hello</h1>
-      </div>
-    </main>
+    <Flex width={"100vw"} height={"100vh"} className="overflow-hidden">
+      <SideBar />
+      <Box width={"75vw"}>
+        <Map lat={51.55} lng={-0.09} />
+      </Box>
+    </Flex>
   );
 }
