@@ -1,19 +1,14 @@
 import { Input } from "@chakra-ui/react";
 import { Icon } from "@chakra-ui/react";
-import { Dispatch, SetStateAction } from "react";
 import { MdSearch } from "react-icons/md";
+import useStore from "@/app/store/store";
 
 interface SearchBarProps {
   input: string;
-  setInput: Dispatch<SetStateAction<string>>;
-  handleSearchInput: () => void;
 }
 
-function SearchBar({
-  input,
-  setInput,
-  handleSearchInput,
-}: SearchBarProps): JSX.Element {
+function SearchBar({ input }: SearchBarProps): JSX.Element {
+  const { setSearchInput, fetchPlaces } = useStore();
   return (
     <div
       className="search-box-wrapper flex justify-between items-center 
@@ -28,14 +23,16 @@ function SearchBar({
         focusBorderColor="transparent"
         value={input}
         onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-          setInput(e.target.value);
+          setSearchInput(e.target.value);
         }}
       />
       <Icon
         as={MdSearch}
         fontSize={22}
         className="mr-3 cursor-pointer"
-        onClick={handleSearchInput}
+        onClick={() => {
+          fetchPlaces();
+        }}
         color={"gray"}
       />
     </div>
@@ -43,3 +40,5 @@ function SearchBar({
 }
 
 export default SearchBar;
+
+// https://nominatim.openstreetmap.org/search?q=135+pilkington+avenue,+birmingham&format=json&polygon_kml=1&addressdetails=1
