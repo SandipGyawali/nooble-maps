@@ -1,6 +1,4 @@
 import { Input } from "@chakra-ui/react";
-import { Icon } from "@chakra-ui/react";
-import { MdSearch } from "react-icons/md";
 import useStore from "@/app/store/store";
 
 interface SearchBarProps {
@@ -9,32 +7,29 @@ interface SearchBarProps {
 
 function SearchBar({ input }: SearchBarProps): JSX.Element {
   const { setSearchInput, fetchPlaces } = useStore();
+
+  function submitHandleClick() {
+    fetchPlaces();
+  }
+
   return (
-    <div
-      className="search-box-wrapper flex justify-between items-center 
-        border border-gray shadow rounded-3xl mx-2 my-4"
-    >
+    <div className="w-fit flex bg-white">
       <Input
+        size={"sm"}
         variant="outline"
         placeholder="Search Location..."
-        border="none"
-        outline="none"
-        appearance="none"
-        focusBorderColor="transparent"
+        className="border bg-white"
         value={input}
         onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
           setSearchInput(e.target.value);
         }}
-      />
-      <Icon
-        as={MdSearch}
-        fontSize={22}
-        className="mr-3 cursor-pointer"
-        onClick={() => {
-          fetchPlaces();
+        onMouseEnter={() => {
+          submitHandleClick;
         }}
-        color={"gray"}
       />
+      <button className="cursor-pointer bg-[#6381E2] px-2 text-white font-bold">
+        Go
+      </button>
     </div>
   );
 }

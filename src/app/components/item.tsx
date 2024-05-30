@@ -1,4 +1,4 @@
-import { Icon, List, ListItem } from "@chakra-ui/react";
+import { Icon, ListItem } from "@chakra-ui/react";
 import { IoLocationSharp } from "react-icons/io5";
 
 interface Props {
@@ -6,6 +6,7 @@ interface Props {
 }
 
 function Item({ data }: Props): JSX.Element {
+  console.log(data);
   return (
     <ListItem
       className="flex cursor-pointer hover:bg-gray-200 transition active:bg-gray-300 active:duration-0 py-2 px-0.5 

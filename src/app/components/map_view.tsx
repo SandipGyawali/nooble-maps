@@ -1,11 +1,17 @@
 "use client";
-import { MapContainer, Marker, Popup, TileLayer, useMap } from "react-leaflet";
+import {
+  MapContainer,
+  Marker,
+  Popup,
+  ZoomControl,
+  TileLayer,
+  useMap,
+} from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import useStore from "@/app/store/store";
 import { useEffect } from "react";
-import { IoLocationSharp } from "react-icons/io5";
 
 // fixes for default marker icon issue
 // delete L.Icon.Default.prototype._getIconUrl;
@@ -42,10 +48,11 @@ function Map(): JSX.Element {
 
   return (
     <MapContainer
-      className="w-screen h-screen"
+      className="w-screen h-screen z-0"
       zoom={13}
       center={[51.505, -0.09]}
       scrollWheelZoom={false}
+      zoomControl={false}
     >
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -58,6 +65,8 @@ function Map(): JSX.Element {
             </Marker>
           ))
         : ""}
+
+      <ZoomControl position="bottomright" />
     </MapContainer>
   );
 }

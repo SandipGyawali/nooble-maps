@@ -1,25 +1,26 @@
-import { List } from "@chakra-ui/react";
+import { Box, List } from "@chakra-ui/react";
 import SearchBar from "./search_bar";
 import Item from "./item";
-import { useState } from "react";
 import useStore from "@/app/store/store";
 
 function SideBar(): JSX.Element {
   const { places, searchInput } = useStore();
 
   return (
-    <div className="side-bar-wrapper w-1/3 overflow overflow-y-scroll scrollbar scrollbar-thin">
+    <div className="side-bar-wrapper h-fit w-[350px] z-50 mx-14 my-3 rounded-xl border border-gray-400 absolute">
       <SearchBar input={searchInput} />
       <List
         spacing={4}
-        marginLeft={6}
-        marginRight={4}
-        marginTop={10}
-        marginBottom={6}
+        // marginLeft={6}
+        // marginRight={4}
+        // marginTop={10}
+        // marginBottom={6}
       >
-        {places.map((place, index) => (
-          <Item key={index} data={place} />
-        ))}
+        <Box className="">
+          {places.map((place, index) => (
+            <Item key={index} data={place} />
+          ))}
+        </Box>
       </List>
     </div>
   );
