@@ -12,6 +12,7 @@ import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import useStore from "@/app/store/store";
 import { useEffect } from "react";
+import { ResetCenterViewProps } from "../interface";
 
 // fixes for default marker icon issue
 // delete L.Icon.Default.prototype._getIconUrl;
@@ -24,10 +25,12 @@ L.Icon.Default.mergeOptions({
     "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png",
 });
 
-type ResetCenterViewProps = {
-  selectPosition: [number, number];
-};
-
+/**
+ *
+ * @param props
+ * @Note zoom the specified location from
+ * the list navigating to the specified location
+ */
 function ResetCenterView(props: ResetCenterViewProps): null {
   const { selectPosition } = props;
   const map = useMap();
@@ -42,6 +45,9 @@ function ResetCenterView(props: ResetCenterViewProps): null {
   return null;
 }
 
+/**
+ * @Note open street map with the it's specification
+ */
 function Map(): JSX.Element {
   const { selectedPosition } = useStore();
   return (

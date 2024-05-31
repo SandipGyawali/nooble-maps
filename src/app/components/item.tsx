@@ -1,12 +1,10 @@
 import { Icon, ListItem } from "@chakra-ui/react";
 import { IoLocationSharp } from "react-icons/io5";
 import useStore from "@/app/store/store";
+import { ItemProps } from "../interface";
 
-interface Props {
-  data: any;
-}
-
-function Item({ data }: Props): JSX.Element {
+function Item({ data }: ItemProps): JSX.Element {
+  const { lat, lon, display_name } = data;
   const { setSelectedPosition } = useStore();
 
   return (
@@ -16,11 +14,11 @@ function Item({ data }: Props): JSX.Element {
        items-center justify-start gap-3 text-sm font-medium"
       onClick={() => {
         console.log(data);
-        setSelectedPosition([data?.lat, data?.lon]);
+        setSelectedPosition([lat, lon]);
       }}
     >
       <Icon as={IoLocationSharp} fontSize={22} color="black" />
-      {data.display_name}
+      {display_name}
     </ListItem>
   );
 }

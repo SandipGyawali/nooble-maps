@@ -1,18 +1,9 @@
 import { create } from "zustand";
 import axios, { AxiosResponse } from "axios";
 import { PARAMS } from "../interface";
+import { StoreState } from "../interface";
 
 const BASE_URL: string = "https://nominatim.openstreetmap.org/search?";
-
-interface StoreState {
-  places: Array<any>;
-  searchInput: string;
-  selectedPosition: [number, number];
-  setSearchInput: (searchInput: string) => void;
-  fetchPlaces: () => Promise<void>;
-  setSelectedPosition: (selectedPosition: [lat: number, lon: number]) => void;
-  removeSelectedPosition: () => void;
-}
 
 /**
  * @Note zustand store

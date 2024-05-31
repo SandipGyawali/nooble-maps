@@ -1,10 +1,11 @@
 import { Input } from "@chakra-ui/react";
 import useStore from "@/app/store/store";
+import { SearchBarProps } from "../interface";
 
-interface SearchBarProps {
-  input: string;
-}
-
+/**
+ * @param param0
+ * @returns JSX Element
+ */
 function SearchBar({ input }: SearchBarProps): JSX.Element {
   const { setSearchInput, fetchPlaces } = useStore();
 

@@ -3,6 +3,10 @@ import SearchBar from "./search_bar";
 import Item from "./item";
 import useStore from "@/app/store/store";
 
+/**
+ * @Note sidebar with search bar and searched location list.
+ * @returns JSX Element
+ */
 function SideBar(): JSX.Element {
   const { places, searchInput } = useStore();
 
