@@ -7,16 +7,15 @@ function SideBar(): JSX.Element {
   const { places, searchInput } = useStore();
 
   return (
-    <div className="side-bar-wrapper h-fit w-[350px] z-50 mx-14 my-3 rounded-xl border border-gray-400 absolute">
+    <div
+      className={`side-bar-wrapper w-[350px] 
+        z-50 absolute
+        ${places.length === 0 ? "h-fit bg-transparent" : "h-full bg-white"}
+      `}
+    >
       <SearchBar input={searchInput} />
-      <List
-        spacing={4}
-        // marginLeft={6}
-        // marginRight={4}
-        // marginTop={10}
-        // marginBottom={6}
-      >
-        <Box className="">
+      <List spacing={6} marginTop={10} marginLeft={2} marginRight={2}>
+        <Box>
           {places.map((place, index) => (
             <Item key={index} data={place} />
           ))}

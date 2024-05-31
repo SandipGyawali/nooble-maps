@@ -2,7 +2,7 @@
 import dynamic from "next/dynamic";
 import { Box, Flex } from "@chakra-ui/react";
 import SideBar from "./components/sidebar";
-import { Suspense } from "react";
+import { Suspense, useState } from "react";
 import Loading from "./components/loading";
 const Map = dynamic(() => import("./components/map_view"), { ssr: false });
 

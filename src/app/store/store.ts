@@ -7,8 +7,11 @@ const BASE_URL: string = "https://nominatim.openstreetmap.org/search?";
 interface StoreState {
   places: Array<any>;
   searchInput: string;
+  selectedPosition: [number, number];
   setSearchInput: (searchInput: string) => void;
   fetchPlaces: () => Promise<void>;
+  setSelectedPosition: (selectedPosition: [lat: number, lon: number]) => void;
+  removeSelectedPosition: () => void;
 }
 
 /**
@@ -17,6 +20,7 @@ interface StoreState {
 const useStore = create<StoreState>((set) => ({
   places: [],
   searchInput: "",
+  selectedPosition: [51.505, -0.09],
   setSearchInput: (searchInput: string) => {
     set({ searchInput });
   },
@@ -45,6 +49,12 @@ const useStore = create<StoreState>((set) => ({
     } catch (error) {
       console.log(error);
     }
+  },
+  setSelectedPosition: (selectedPosition: [number, number]) => {
+    set({ selectedPosition });
+  },
+  removeSelectedPosition: () => {
+    set({ selectedPosition: [51.505, -0.09] });
   },
 }));
 

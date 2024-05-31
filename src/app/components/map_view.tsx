@@ -24,32 +24,30 @@ L.Icon.Default.mergeOptions({
     "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png",
 });
 
-function ResetCenterView(props: any): null {
+type ResetCenterViewProps = {
+  selectPosition: [number, number];
+};
+
+function ResetCenterView(props: ResetCenterViewProps): null {
   const { selectPosition } = props;
   const map = useMap();
 
-  console.log(selectPosition);
   useEffect(() => {
-    if (!selectPosition) {
-      map.setView(
-        L.latLng(selectPosition?.lat, selectPosition?.lon),
-        map.getZoom(),
-        {
-          animate: true,
-        }
-      );
+    if (selectPosition) {
+      map.setView(L.latLng(...selectPosition), map.getZoom(), {
+        animate: true,
+      });
     }
   }, [selectPosition, map]);
   return null;
 }
 
 function Map(): JSX.Element {
-  const { places } = useStore();
-
+  const { selectedPosition } = useStore();
   return (
     <MapContainer
       className="w-screen h-screen z-0"
-      zoom={13}
+      zoom={8}
       center={[51.505, -0.09]}
       scrollWheelZoom={false}
       zoomControl={false}
@@ -58,14 +56,16 @@ function Map(): JSX.Element {
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
-      {places.length !== 0
-        ? places.map((data, index) => (
-            <Marker position={[data?.lat, data?.lon]} key={index}>
-              <ResetCenterView selectPosition={data} />
-            </Marker>
-          ))
-        : ""}
-
+      {selectedPosition ? (
+        <>
+          <Marker position={selectedPosition}>
+            <Popup>You Selected Me</Popup>
+          </Marker>
+          <ResetCenterView selectPosition={selectedPosition} />
+        </>
+      ) : (
+        ""
+      )}
       <ZoomControl position="bottomright" />
     </MapContainer>
   );

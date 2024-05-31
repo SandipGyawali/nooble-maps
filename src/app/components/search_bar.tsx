@@ -13,12 +13,14 @@ function SearchBar({ input }: SearchBarProps): JSX.Element {
   }
 
   return (
-    <div className="w-fit flex bg-white">
+    <div className="w-11/12 m-auto my-4 flex shadow-lg">
       <Input
-        size={"sm"}
-        variant="outline"
+        borderLeftRadius={6}
+        backgroundColor="white"
+        borderColor="#4e4d4d73"
+        size="sm"
+        outline="none"
         placeholder="Search Location..."
-        className="border bg-white"
         value={input}
         onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
           setSearchInput(e.target.value);
@@ -27,13 +29,16 @@ function SearchBar({ input }: SearchBarProps): JSX.Element {
           submitHandleClick;
         }}
       />
-      <button className="cursor-pointer bg-[#6381E2] px-2 text-white font-bold">
-        Go
+      <button
+        className="cursor-pointer rounded-tr rounded-br bg-[#6381E2] 
+          hover:bg-[#5172c4] transition-all linear duration-200 
+          px-2 text-white font-md"
+        onClick={submitHandleClick}
+      >
+        Search
       </button>
     </div>
   );
 }
 
 export default SearchBar;
-
-// https://nominatim.openstreetmap.org/search?q=135+pilkington+avenue,+birmingham&format=json&polygon_kml=1&addressdetails=1
