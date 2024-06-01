@@ -12,10 +12,10 @@ const useStore = create<StoreState>((set) => ({
   places: [],
   searchInput: "",
   selectedPosition: [51.505, -0.09],
-  setSearchInput: (searchInput: string) => {
+  setSearchInput: (searchInput: string): void => {
     set({ searchInput });
   },
-  fetchPlaces: async () => {
+  fetchPlaces: async (): Promise<void> => {
     try {
       const { searchInput } = useStore.getState();
       const params: PARAMS = {
@@ -41,10 +41,10 @@ const useStore = create<StoreState>((set) => ({
       console.log(error);
     }
   },
-  setSelectedPosition: (selectedPosition: [number, number]) => {
+  setSelectedPosition: (selectedPosition: [number, number]): void => {
     set({ selectedPosition });
   },
-  removeSelectedPosition: () => {
+  removeSelectedPosition: (): void => {
     set({ selectedPosition: [51.505, -0.09] });
   },
 }));

@@ -1,15 +1,35 @@
-# node apline environment
-FROM node:20-alpine
+# Use the official Node.js image as the base image
+FROM node:18-alpine AS builder
 
-# working directory of my application
-WORKDIR /app 
+# Set the working directory
+WORKDIR /app
 
-COPY package*.json .
+# Copy the package.json and package-lock.json files
+COPY package*.json ./
 
+# Install dependencies
 RUN npm install
 
+# Copy the rest of the application code
 COPY . .
 
-EXPOSE 5173
+# Build the Next.js application
+RUN npm run build
 
-CMD ["npm", "run", "dev"]
+# Use a second stage to reduce the final image size
+FROM nginx:alpine
+
+# Copy the built Next.js application from the builder stage
+COPY --from=builder /app/.next /usr/share/nginx/html/.next
+COPY --from=builder /app/public /usr/share/nginx/html
+
+#Copy custom Nginx configuratoins
+COPY nginx.conf /etc/nginx/nginx.conf
+COPY default.conf /etc/nginx/conf.d/default.conf
+
+
+# Expose the port the app runs on
+EXPOSE 80
+
+# Start NginxAC
+CMD ["nginx", "-g", "daemon off;"]

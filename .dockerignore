@@ -1,1 +1,16 @@
+/.idea
+/.vscode
 node_modules
+*.log
+.git
+.gitignore
+/.github
+/docs
+/docker
+/sdk
+/examples
+/testdata
+/assets
+/pnpm*
+.prettierrc.yml
+/src/app/__tests__

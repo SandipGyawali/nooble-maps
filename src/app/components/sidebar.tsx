@@ -12,13 +12,12 @@ function SideBar(): JSX.Element {
 
   return (
     <div
-      className={`side-bar-wrapper w-[350px] 
-        z-50 absolute
+      className={`side-bar-wrapper w-[350px] z-50 absolute
         ${places.length === 0 ? "h-fit bg-transparent" : "h-full bg-white"}
       `}
     >
       <SearchBar input={searchInput} />
-      <List spacing={6} marginTop={10} marginLeft={2} marginRight={2}>
+      <List spacing={8} marginTop={10} marginLeft={4} marginRight={2}>
         <Box>
           {places.map((place, index) => (
             <Item key={index} data={place} />
